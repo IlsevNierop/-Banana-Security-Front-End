@@ -24,6 +24,7 @@ function SignIn() {
               Email:
               <input
                   type="text"
+                  id="email-field"
                   {...register("email", {
                       required: {
                           value: true,
@@ -38,6 +39,7 @@ function SignIn() {
               Wachtwoord:
               <input
                   type="password"
+                  id="password-field"
                   {...register("password", {
                       required: {
                           value: true,

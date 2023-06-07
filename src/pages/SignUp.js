@@ -22,6 +22,7 @@ function SignUp() {
                   Gebruikersnaam:
                   <input
                       type="text"
+                      id="username-field"
                       {...register("username", {
                           required: {
                               value: true,
@@ -36,6 +37,7 @@ function SignUp() {
                   Email:
                   <input
                       type="text"
+                      id="email-field"
                       {...register("email", {
                           required: {
                               value: true,
@@ -50,6 +52,7 @@ function SignUp() {
                   Wachtwoord:
                   <input
                       type="password"
+                      id="password-field"
                       {...register("password", {
                           required: {
                               value: true,
