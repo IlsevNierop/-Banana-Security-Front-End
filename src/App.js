@@ -18,8 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
             <Route path="/profile" element={isAuth? <Profile /> : <Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={  <SignUp />} />
+          <Route path="/signin" element={isAuth? <Home /> : <SignIn />} />
+          <Route path="/signup" element={isAuth? <Home /> : <SignUp /> } />
         </Routes>
       </div>
     </>
