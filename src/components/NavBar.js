@@ -38,7 +38,7 @@ function NavBar() {
         >
           Registreren
         </button> :
-              <span className="user-navbar">{user}</span>
+              <span className="user-navbar">{user.username}</span>
 
           }
       </div>
