@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
@@ -8,16 +8,25 @@ function SignUp() {
     const {register, formState: { errors }, handleSubmit} = useForm();
     const {login} = useContext(AuthContext);
 
+    const controller = new AbortController();
+
+    useEffect(() => {
+
+        return function cleanup() {
+            console.log("cleanup sign up aangeroepen")
+            controller.abort();
+        }
+    }, []);
+
     async function handleFormSubmit(data){
         try {
-            const response = await axios.post("http://localhost:3000/register", {email: data.email, password: data.password, username: data.username});
-            // hierboven mag ook email, password (ipv email: email etc) omdat de waarde die je doorgeeft dezelfde naam heeft.
+            const response = await axios.post("http://localhost:3000/register", {email: data.email, password: data.password, username: data.username}, {
+                signal: controller.signal,
+            });
 
-            console.log(response);
             login(response.data.accessToken);
         } catch (data) {
             console.error("Registratie mislukt", data);
-            //eindopdraacht ook een error doen in de UI, zodat de melding ook voor gebruiker zichtbaar is.
         }
     }
 

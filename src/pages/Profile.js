@@ -10,6 +10,8 @@ function Profile() {
 
     const token = localStorage.getItem('token');
 
+    const controller = new AbortController();
+
     useEffect(() => {
         async function fetchPrivateContent() {
             try {
@@ -17,7 +19,8 @@ function Profile() {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
-                    }
+                    },
+                    signal: controller.signal,
                 });
                 setPrivateContent(response.data);
             } catch (e) {
@@ -26,6 +29,12 @@ function Profile() {
         }
 
         void fetchPrivateContent();
+
+        return function cleanup() {
+            console.log("cleanup profile aangeroepen")
+            controller.abort();
+        }
+
     }, [])
 
 

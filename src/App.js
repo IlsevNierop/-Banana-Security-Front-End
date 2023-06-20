@@ -17,7 +17,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
-            <Route path="/profile" element={isAuth? <Profile /> : <Home />} />
+            <Route path="/profile" element={isAuth? <Profile /> : <SignIn />} />
           <Route path="/signin" element={isAuth? <Home /> : <SignIn />} />
           <Route path="/signup" element={isAuth? <Home /> : <SignUp /> } />
         </Routes>
