@@ -21,12 +21,7 @@ function AuthContextProvider({children}) {
         if (storedToken && checkTokenValidity(storedToken)) {
             void login(storedToken);
         } else {
-            setAuthData({
-                ...authData,
-                isAuth: false,
-                user: null,
-                status: "done",
-            })
+            void logout();
         }
 
     }, [])
@@ -71,7 +66,8 @@ function AuthContextProvider({children}) {
         setAuthData({
             ...authData,
             isAuth: false,
-            user: null
+            user: null,
+            status: "done",
         })
         console.log("Gebruiker is uitgelogd!");
         navigate("/");
